@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var TicketsUtil = require('../src/tickets_util');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,6 +26,11 @@ router.get('/ticketsOnPage/:pageNumber', function (req, res) {
     const pageNumber = parseInt(req.params.pageNumber);
     res.setHeader('Content-Type', 'application/json');
     res.send("Got page number: " + pageNumber);
+});
+
+router.get('/tickets/all', function (req, res) {
+    var ticketsUtil = new TicketsUtil();
+    ticketsUtil.getAllTickets(res);
 });
 
 module.exports = router;
