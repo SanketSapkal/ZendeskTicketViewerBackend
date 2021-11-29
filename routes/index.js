@@ -12,20 +12,23 @@ router.get('/', function(req, res, next) {
 router.get('/ticket/:ticketId', function (req, res) {
     const ticketId = parseInt(req.params.ticketId)
     res.setHeader('Content-Type', 'application/json');
-    res.send("Got ticketId: " + ticketId);
+    var tickets_util = new TicketsUtil();
+    tickets_util.getTicket(ticketId, res);
 });
 
 // GET total number of tickets.
 router.get('/tickets/count', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
-    res.send("Current ticket count: 0");
+    var tickets_util = new TicketsUtil();
+    tickets_util.getTicketCount(res);
 });
 
 // GET tickets on the given page number.
 router.get('/ticketsOnPage/:pageNumber', function (req, res) {
     const pageNumber = parseInt(req.params.pageNumber);
     res.setHeader('Content-Type', 'application/json');
-    res.send("Got page number: " + pageNumber);
+    var tickets_util = new TicketsUtil();
+    tickets_util.getTicketsOnPage(pageNumber, res);
 });
 
 router.get('/tickets/all', function (req, res) {
