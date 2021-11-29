@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 router.get('/ticket/:ticketId', function (req, res) {
     const ticketId = parseInt(req.params.ticketId)
     res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     var tickets_util = new TicketsUtil();
     tickets_util.getTicket(ticketId, res);
 });
@@ -19,6 +20,7 @@ router.get('/ticket/:ticketId', function (req, res) {
 // GET total number of tickets.
 router.get('/tickets/count', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     var tickets_util = new TicketsUtil();
     tickets_util.getTicketCount(res);
 });
@@ -27,12 +29,14 @@ router.get('/tickets/count', function (req, res) {
 router.get('/ticketsOnPage/:pageNumber', function (req, res) {
     const pageNumber = parseInt(req.params.pageNumber);
     res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     var tickets_util = new TicketsUtil();
     tickets_util.getTicketsOnPage(pageNumber, res);
 });
 
 router.get('/tickets/all', function (req, res) {
     var ticketsUtil = new TicketsUtil();
+    res.setHeader('Access-Control-Allow-Origin', '*');
     ticketsUtil.getAllTickets(res);
 });
 
